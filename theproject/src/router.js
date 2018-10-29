@@ -6,6 +6,12 @@ import Stores from './components/stores/index.vue'
 import Manage from './components/stores/goodsService/manage/index.vue'
 import Goods from './components/stores/goodsService/goods/index.vue'
 import Service from './components/stores/goodsService/service/index.vue'
+import PlatftomMgt from './components/platformManagement/index.vue'
+import Users from './components/platformManagement/users/index.vue'
+import Platfrom from './components/platformManagement/platform/index.vue'
+import SpoilMain from './components/platformManagement/spoilMain/index.vue'
+import Supplier from './components/platformManagement/supplier/index.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +45,26 @@ export default new Router({
         component: Service
       }
       ]
+    },
+    {
+      path: '/PlatftomMgt',
+      component: PlatftomMgt,
+      children: [{
+        path: 'Users',
+        component: Users
+      },
+      {
+        path: 'Platfrom',
+        component: Platfrom
+      },
+      {
+        path: 'SpoilMain',
+        component: SpoilMain
+      },
+      {
+        path: 'Supplier',
+        component: Supplier
+      }]
     }
   ]
 })
