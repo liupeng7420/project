@@ -13,8 +13,10 @@
         </el-menu-item-group>
     </el-menu>
     </el-aside>
+      
+    <el-main>
       <router-view> </router-view>
-    </el-main></el-main>
+    </el-main>
   </el-container>
 </el-container>
   </div>
