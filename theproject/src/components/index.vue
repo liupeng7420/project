@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
 //   created:function() {
 //         axios({
@@ -18,7 +18,6 @@ export default {
 //   },
 }
 </script>
-
 
 <style scoped>
 

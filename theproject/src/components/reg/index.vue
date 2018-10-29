@@ -1,14 +1,24 @@
 <template>
   <div id="regs">
 <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-   <el-form-item label="手机号" prop="phone">
-    <el-input type="text" v-model="ruleForm2.phone"></el-input>
+   <!-- 账号 -->
+   <el-form-item label="账号" prop="username">
+    <el-input type="text" v-model="ruleForm2.username"></el-input>
   </el-form-item>
-  <el-form-item label="密码" prop="pass">
+   <!-- 密码 -->
+  <el-form-item label="密码" prop="password">
     <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
   </el-form-item>
   <el-form-item label="确认密码" prop="checkPass">
     <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
+  </el-form-item>
+  <!-- 手机号 -->
+   <el-form-item label="手机号" prop="phone">
+    <el-input type="text" v-model="ruleForm2.phone"></el-input>
+  </el-form-item>
+  <!-- 姓名 -->
+  <el-form-item label="姓名" prop="name">
+    <el-input type="text" v-model="ruleForm2.name"></el-input>
   </el-form-item>
   <el-form-item label="验证码" prop="code">
     <el-input v-model.number="ruleForm2.code"></el-input>
@@ -22,104 +32,129 @@
 </template>
 
 <script>
-import axios from 'axios'
-  export default {
-    data() {
-            var checkPhone = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入手机号'));
-        } else {
-               if(/^1\d{10}$/.test(value)){
-                 
-                          callback();
-                             
-                    }else{
-                       callback(new Error('请输入正确格式'));
-                    }
-        }
-      };
-      var checkCode = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('验证码不能为空'));
-        }else{
-     
-          if (!Number.isInteger(value)) {
-            callback(new Error('请输入数字值'));
-          } else {
-            if (/^\d{6,15}$/.test(value)) {
-              callback();
-            } else {
-           callback(new Error('请输入6-15位'));
+import axios from "axios";
+export default {
+  data() {
+    var checkUsername = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入账号"));
+      } else {
+        if (/[a-zA-Z0-9]{3,15}$/.test(value)) {
+          axios({
+            method: "get",
+            url: "/users/validate",
+            params: {
+              username: value
             }
-          }
-     
-        }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
+          }).then(response => {
+            if (response.data.status == 0) {
+              callback(new Error("账号重复"));
+            } else {
+              callback();
+            }
+          });
         } else {
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
+          callback(new Error("请输入正确格式"));
         }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm2.pass) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
-      return {
-        ruleForm2: {
-          pass: '',
-          checkPass: '',
-          code: '',
-          phone:''
-        },
-        rules2: {
-                phone: [
-            { validator: checkPhone, trigger: 'blur' }
-          ],
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ],
-          code: [
-            { validator: checkCode, trigger: 'blur' }
-          ]
-        }
-      };
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('注册成功!');
-            this.$router.push("/");
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
       }
+    };
+    var checkPhone = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入手机号"));
+      } else {
+        if (/^1\d{10}$/.test(value)) {
+          callback();
+        } else {
+          callback(new Error("请输入正确格式"));
+        }
+      }
+    };
+    var checkCode = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("验证码不能为空"));
+      } else {
+        if (/^\w{4,15}$/.test(value) || value == "admin") {
+          callback();
+        } else {
+          callback(new Error("请输入4-15位"));
+        }
+      }
+    };
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm2.checkPass !== "") {
+          this.$refs.ruleForm2.validateField("checkPass");
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.ruleForm2.pass) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
+    return {
+      ruleForm2: {
+        username: "",
+        name: "",
+        pass: "",
+        checkPass: "",
+        code: "",
+        phone: ""
+      },
+      rules2: {
+        username: [{ validator: checkUsername, trigger: "blur" }],
+        name: [{ validator: validatePass, trigger: "blur" }],
+        phone: [{ validator: checkPhone, trigger: "blur" }],
+        pass: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        code: [{ validator: checkCode, trigger: "blur" }]
+      }
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          axios({
+            method: "post",
+            url: "/users/reg",
+            data: {
+              username: this.ruleForm2.username,
+              phone: this.ruleForm2.phone,
+              pwd: this.ruleForm2.pass,
+              name: this.ruleForm2.name,
+              code: this.ruleForm2.code,
+              role:"门店管理员",
+              condition: "申请中"
+            }
+          }).then(() => {
+            alert("注册成功!");
+            this.$router.push("/");
+          });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     }
   }
+};
 </script>
 <style scoped>
-#regs{
-width:500px;
- border: 1px solid red;
+#regs {
+  width: 500px;
+  border: 1px solid red;
   margin: auto;
-  padding:20px 20px 0 0;
+  padding: 20px 20px 0 0;
 }
 </style>

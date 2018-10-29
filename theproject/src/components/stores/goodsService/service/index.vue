@@ -6,14 +6,13 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-        methods: {
+  methods: {
 
-        }
+  }
 }
 </script>
-
 
 <style scoped>
 

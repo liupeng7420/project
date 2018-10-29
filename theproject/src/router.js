@@ -31,13 +31,13 @@ export default new Router({
       path: '/Manage',
       component: Manage,
       children: [{
-          path: 'Goods',
-          component: Goods
-        },
-        {
-          path: 'Service',
-          component: Service
-        }
+        path: 'Goods',
+        component: Goods
+      },
+      {
+        path: 'Service',
+        component: Service
+      }
       ]
     }
   ]
