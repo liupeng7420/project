@@ -36,11 +36,12 @@ router.get('/login', async function (req, res) {
   let body = req.query;
   let data = await client.get("/login", body);
   console.log(data);
-  if (data.pwd) {
+  if(data.pwd && data.role =="门店管理员"){
     res.send({ status: 1 });
-  } else if (data.role == "管理员") {
-    res.send({ status: 2 })
-  } else {
+  }
+  if(data.pwd && data.role =="平台管理员"){
+    res.send({ status: 2 });
+  }else{
     res.send({ status: 0 });
   }
 })

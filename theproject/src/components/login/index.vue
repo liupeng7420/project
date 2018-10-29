@@ -2,14 +2,14 @@
   <div id="logins">
     <h1>欢迎使用XXX软件管理，请登录</h1>
 <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-   <el-form-item label="手机号" prop="username">
+   <el-form-item label="账号" prop="username">
     <el-input type="text" v-model="ruleForm2.username"></el-input>
   </el-form-item>
-  <el-form-item label="密码" prop="pass">
-    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+  <el-form-item label="密码" prop="pwd">
+    <el-input type="password" v-model="ruleForm2.pwd" autocomplete="off"></el-input>
   </el-form-item>
   <el-form-item>
-    <el-button type="primary" @click="stores">登陆</el-button>
+    <el-button type="primary" @click="stores()">登陆</el-button>
     <el-button @click="reg()">注册</el-button>
   </el-form-item>
 </el-form>
@@ -41,12 +41,12 @@ export default {
 
     return {
       ruleForm2: {
-        pass: "",
+        pwd: "",
         username: ""
       },
       rules2: {
         username: [{ validator: checkusername, trigger: "blur" }],
-        pass: [{ validator: validatePass, trigger: "blur" }]
+        pwd: [{ validator: validatePass, trigger: "blur" }]
       }
     };
   },
@@ -54,20 +54,28 @@ export default {
     reg() {
       this.$router.push("/Reg");
     },
-    stores:function() {
+    stores() {
       axios({
         method: "get",
         url: "/users/login",
         params: {
           username: this.ruleForm2.username,
-          pwd: this.ruleForm2.password
+          pwd: this.ruleForm2.pwd
         }
-      }).then(res => {
-        if (res.data.status == 1) {
+      }).then((response) => {
+        console.log(this.ruleForm2.pwd)
+        if (response.data.status == 1) {
+          console.log(response.data.status)
           this.$router.push("/Stores")
-        } else if (res.data.status == 2) {
+         
+        }
+        if (response.data.status == 2) {
+           console.log(response.data.status)
           this.$router.push("/PlatftomMgt");
-        } else {
+          
+        } 
+        else if (response.data.status == 0){
+           console.log(response.data.status)
           alert("账号或密码错误");
         }
       });
