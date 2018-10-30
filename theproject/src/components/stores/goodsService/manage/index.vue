@@ -10,11 +10,13 @@
         <el-menu-item-group>
           <el-menu-item index="/manage/Goods">去商品</el-menu-item>
           <el-menu-item index="/manage/Service">去服务</el-menu-item>
+          <el-menu-item index="/manage/indent">订单管理</el-menu-item>
         </el-menu-item-group>
     </el-menu>
     </el-aside>
+    <el-main>
       <router-view> </router-view>
-    </el-main></el-main>
+    </el-main>
   </el-container>
 </el-container>
   </div>
@@ -28,7 +30,6 @@ export default {
         }
 }
 </script>
-
 
 <style scoped>
 .fenye,body,html{
@@ -52,10 +53,9 @@ export default {
   }
   
   .el-main {
+    padding:0;
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
   }
   
   body > .el-container {

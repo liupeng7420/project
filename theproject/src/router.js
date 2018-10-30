@@ -6,6 +6,8 @@ import Stores from './components/stores/index.vue'
 import Manage from './components/stores/goodsService/manage/index.vue'
 import Goods from './components/stores/goodsService/goods/index.vue'
 import Service from './components/stores/goodsService/service/index.vue'
+import Indent from './components/stores/goodsService/indent/index.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +39,10 @@ export default new Router({
         {
           path: 'Service',
           component: Service
+        },
+        {
+          path: 'Indent',
+          component: Indent
         }
       ]
     }
