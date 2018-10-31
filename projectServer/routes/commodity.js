@@ -8,9 +8,8 @@ client.url('localhost:8080');
 
 router.get("/", async function (req, res) {//商品
   let { name, value, page, rows } = req.query;
-  // console.log(name, value, page, rows);
-  let data = await client.get("/commodity", { page, rows, name: value });
-  // console.log(data,123);
+  let data = await client.get("/commodity", { page, rows, name: value});
+
   res.send(data);
 });
 router.get("/:id", async function (req, res) {//id

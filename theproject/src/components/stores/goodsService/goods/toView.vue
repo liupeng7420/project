@@ -1,7 +1,7 @@
 <template>
 <div class="mains">
     <el-button icon="el-icon-search" @click="update(goodsID)" circle></el-button>
-      <el-dialog title="全部商品信息" :visible.sync="dialogFormVisible" class="adds">
+      <el-dialog title="查看商品" :visible.sync="dialogFormVisible" class="adds">
   <el-form :model="updates" label-width="80px">
     <el-form-item label="商品名称:">
     <el-input v-model="updates.name" class="inputs"></el-input>
@@ -55,7 +55,8 @@
   <!-- <i v-else class="el-icon-plus avatar-uploader-icon"></i> -->
 </div>
   <div slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="submitupdate(updates._id)">关闭</el-button>
+     <!-- <el-button @click="dialogFormVisible = false">关闭</el-button> -->
+    <el-button type="primary" @click="submitupdate(updates._id)">修改</el-button>
   </div>
 </el-dialog>
 </div>
@@ -86,7 +87,8 @@ export default {
       this.dialogFormVisible = true;
     },
     submitupdate(id) {
-      console.log(this.updates);
+      console.log(id);
+           this.dialogFormVisible = false;
     },
     handleAvatarSuccess(res, file) {
       this.updates.img = file.response;

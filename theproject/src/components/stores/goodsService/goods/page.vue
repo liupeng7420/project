@@ -1,4 +1,5 @@
 <template>
+<!-- 商品添加 -->
 <div>
     <el-pagination
   background
@@ -19,23 +20,34 @@ import { createNamespacedHelpers } from "vuex";
 import { ElementUI } from "element-ui";
 const { mapState, mapActions } = createNamespacedHelpers("goods");
 export default {
+  props: {
+    name: null,
+    value: null,
+    pagenation: ""
+  },
   methods: {
     before() {
+      let name = this.names;
+      let value = this.value;
       let curpage = this.pagenation.curpage - 1;
-      this.Ajs({ page: curpage });
+      this.Ajs({ page: curpage, name, value });
     },
     after() {
+      let name = this.names;
+      let value = this.value;
       let curpage = this.pagenation.curpage + 1;
-      this.Ajs({ page: curpage });
+      this.Ajs({ page: curpage, name, value });
     },
-    pages(page){
-         this.Ajs({ page});
+    pages(page) {
+      let name = this.names;
+      let value = this.value;
+      this.Ajs({ page, name, value });
     },
     ...mapActions(["Ajs"])
-  },
-  computed: {
-    ...mapState(["pagenation"])
   }
+  // computed: {
+  //   ...mapState(["pagenation"])
+  // }
 };
 </script>
 

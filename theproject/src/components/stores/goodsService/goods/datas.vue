@@ -36,12 +36,13 @@
     </el-table-column>
     <el-table-column
       fixed="right"
-      label="操作"
-      width="170">
+      label="查看商品信息/添加商品"
+      width="120"
+     >
       <template slot-scope="scope">
           <ToView :goodsID="scope.row._id"></ToView>
-          <Update :goodsID="scope.row._id"></Update>
-          <el-button type="danger" icon="el-icon-delete"  @click="deletes(scope.row._id)" circle></el-button>
+            <Popover :addGoods="addGoods" :commodity="scope.row._id"></Popover>
+          <!-- 价格弹窗 -->
       </template>
     </el-table-column>
   </el-table>
@@ -50,41 +51,62 @@
 <script>
 import axios from "axios";
 import ToView from "./toView.vue";
-import Update from "./update.vue";
+import Popover from './popover.vue';
 import { Table, TableColumn, Button, Pagination } from "element-ui";
 import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("goods");
 
 export default {
+  props: {
+    goods: null,
+    pagenation: null,
+    dpId: null,
+    downs: null
+  },
   methods: {
     handleClick(id) {
       console.log(id);
     },
-    deletes(id) {
-        axios({
-          method:"delete",
-          url:"/commodity/"+id,
-        }).then((res)=>{
-        let curpage = this.pagenation.curpage;
-        this.Ajs({page:curpage});
-        })
+    addGoods(id,price) {
+      let page=this.pages.curpage
+      console.log(id,price);
+      
+      // // 新增店铺商品
+      axios({
+        method: "post",
+        url: "/product",
+        data: {
+          commodity: {
+            $ref: "commodity",
+            $id: id
+          },
+          stores: {
+            $ref: "stores",
+            $id: this.dpId
+          },price:price
+        }
+      }).then(res => {
+        alert("新增成功");
+        // this.downs();
+        this.getGoods({id:this.dpId,page})
+      });
     },
-    ...mapActions(["Ajs"])
-  },
-  data() {
-    return {};
+        ...mapActions(["Ajs","getGoods"])
   },
   computed: {
-    ...mapState(["goods","pagenation"])
-
+    ...mapState(['pages'])
   },
-   components: {
-   Update,
-   ToView
+  components: {
+    ToView,
+    Popover
   }
 };
 </script>
 
 
 <style scoped>
+.caozuo {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
