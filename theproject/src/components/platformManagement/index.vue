@@ -1,6 +1,6 @@
 <template>
     <el-container style="height:100%;">
-  <el-header style="height:20%;">平台管理</el-header>
+  <el-header style="height:20%;" class="headerTitle">爱宠系统平台管理</el-header>
   <el-container>
     <el-aside width="200px">
         <el-col>
@@ -21,7 +21,7 @@
       </el-menu-item>
       
         <el-submenu index="/PlatftomMgt/Platform">
-          <template slot="title">平台管理</template>
+          <template slot="title">门店审核管理</template>
           <el-menu-item index="/PlatftomMgt/Platform/Platfrom">已审核</el-menu-item>
           <el-menu-item index="/PlatftomMgt/Platform/Closed">已关闭</el-menu-item>
           <el-menu-item index="/PlatftomMgt/Platform/NotAuait">未审核</el-menu-item>
@@ -30,7 +30,7 @@
   </el-col>
     </el-aside>
     <el-main>
-        <router-view> </router-view>
+        <router-view></router-view>
     </el-main>
   </el-container>
 </el-container>
@@ -78,5 +78,9 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+.headerTitle{
+  font-size: 30px;
+  color: rgb(255, 254, 254);
 }
 </style>

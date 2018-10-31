@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p>已审核</p>
+      <p class="font">已审核</p>
       <PfSearch></PfSearch>
       <PfTable></PfTable>
       <PfPage></PfPage>
@@ -33,4 +33,9 @@ export default {
 };
 </script>
 <style scoped>
+.font{
+  color: rgb(14, 168, 14);
+  text-align: center;
+  font-size: 28px;
+}
 </style>

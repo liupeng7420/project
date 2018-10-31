@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p>已关闭</p>
+      <p class="font">已关闭</p>
       <PfClosedSearch></PfClosedSearch>
       <PfClosedTable></PfClosedTable>
       <PfClosedPage></PfClosedPage>
@@ -31,4 +31,9 @@ export default {
 };
 </script>
 <style scoped>
+.font{
+  color: red;
+  text-align: center;
+  font-size: 28px;
+}
 </style>

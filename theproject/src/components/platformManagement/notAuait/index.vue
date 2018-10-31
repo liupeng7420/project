@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>未审核</p>
+        <p class="font">未审核</p>
       <PfNotAuaitSearch></PfNotAuaitSearch>
       <PfNotAuaitTable></PfNotAuaitTable>
       <PfNotAuaitPage></PfNotAuaitPage>
@@ -31,4 +31,9 @@ export default {
 };
 </script>
 <style scoped>
+.font{
+  color: red;
+  text-align: center;
+  font-size: 28px;
+}
 </style>
