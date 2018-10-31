@@ -13,16 +13,10 @@
         </el-menu-item-group>
     </el-menu>
     </el-aside>
-<<<<<<< HEAD
-      <router-view>
-       </router-view>
-    </el-main></el-main>
-=======
       
     <el-main>
       <router-view> </router-view>
     </el-main>
->>>>>>> 8273b2aea49f32a3854342c8beb0fd43cf28a9a2
   </el-container>
 </el-container>
   </div>
