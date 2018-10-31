@@ -122,13 +122,7 @@ router.put('/put',async function(req,res){
   let body = req.body;
   // console.log("id:",id);
   // console.log("body:",body);
-  if (body.code == "admin") {
-    body.role = "平台管理员";
-    body.condition = ""
-  }else{
-    body.role = "门店管理员";
-    body.condition = "申请中"
-  }
+ 
   let data = await client.put("/users/"+id,body);
   res.send("success")
 })

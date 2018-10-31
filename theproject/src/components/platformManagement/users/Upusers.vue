@@ -21,6 +21,7 @@
         <p></p>
         验证码<input type="text" v-model="code.value" @blur="$emit('input',$event.target.value)">
         <p></p>
+        
     
         <form action="condition">
             <input type="radio" name="condition" value="申请中" v-model="condition.value" @blur="$emit('input',$event.target.value)">申请中

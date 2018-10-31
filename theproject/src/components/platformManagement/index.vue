@@ -1,15 +1,13 @@
 <template>
     <el-container style="height:100%;">
-<<<<<<< HEAD
-  <el-header style="height:20%;" class="headerTitle">爱宠系统平台管理</el-header>
-=======
-    <div>
+       <div>
      <div>当前登录账号：{{this.userName}}</div>
     <input type="button" value="注销" @click="remove">
     </div>
-  <el-header style="height:20%;">平台管理</el-header>
+  <el-header style="height:20%;" class="headerTitle">爱宠系统平台管理</el-header>
+   
+  <!-- <el-header style="height:20%;">平台管理</el-header> -->
   
->>>>>>> planet
   <el-container>
     <el-aside width="200px">
         <el-col>
@@ -45,16 +43,10 @@
 </el-container>
 </template>
 <script>
-<<<<<<< HEAD
-export default {
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-=======
 import axios from "axios";
+
+
+
 
 export default {
   data() {
@@ -80,7 +72,12 @@ export default {
         this.$router.push("/");
         window.location.reload();
       });
->>>>>>> planet
+    },
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     }
   }
 };
@@ -103,12 +100,9 @@ export default {
 .el-main {
   background-color: #e9eef3;
   color: #333;
-<<<<<<< HEAD
-=======
   text-align: center;
   line-height: 0;
   padding: 0;
->>>>>>> planet
 }
 
 body > .el-container {

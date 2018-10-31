@@ -75,7 +75,7 @@ export default {
      form: {
             users:{
               $ref:"users",
-              $id:"5bd955003c4726ab2ac5cdf5"
+              $id:""
           },
           name: '',
           licensenumber: '',
@@ -126,6 +126,14 @@ export default {
          this.updatedialog(false);
       }
     },
+     created(){
+        axios({
+      type: "get",
+      url: "/users/getSession"
+    }).then(response => {
+      this.form.users.$id=response.data._id
+    });
+     },
     computed: {
         ...mapState(["dialogFormVisible"])
     }

@@ -2,7 +2,7 @@
   <el-container class="container">
     <el-header class="nav" height="100px" > 
        <img class="img">
-       <span class="username">门店管理员账号</span>
+       <span class="username">{{user.username}}</span>
        <el-button size="mini" type="danger" plain  @click="logout()">注销</el-button>
     </el-header>
     <el-main class="main">
@@ -39,7 +39,9 @@ import DialogItem from "./DialogItem.vue";
 import { mapState, mapActions, mapMutations  } from "vuex"; 
 export default {
   data() {
-    return {};
+    return {
+      user:{}
+    };
   },
   methods: {
     into(id) {
@@ -47,15 +49,26 @@ export default {
       this.$router.push("/manage");
     },
     logout() {
-      console.log("logout");
+       axios({
+        type: "get",
+        url: "/users/removeSession"
+      }).then(response => {
+        this.$router.push("/");
+        window.location.reload();
+      });
     },
     ...mapMutations("stores",["updatedialog"]),
     ...mapActions("stores",["setStores"]),
     ...mapMutations("service",["setStoreId"])
   },
   created() {
-    
-    this.setStores("5bd955003c4726ab2ac5cdf5");
+    axios({
+      type: "get",
+      url: "/users/getSession"
+    }).then(response => {
+      this.setStores(response.data._id);
+      this.user = response.data;
+    });
   },
   computed: {
     ...mapState("stores",["stores", "dialogFormVisible"])
