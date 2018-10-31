@@ -59,7 +59,7 @@
   </el-form>
   <div slot="footer" class="dialog-footer">
     <el-button @click="updatedialog(false)">取 消</el-button>
-    <el-button type="primary" @click="addstore(form)">确 定</el-button>
+    <el-button type="primary" @click="add()">确 定</el-button>
   </div>
 </el-dialog>
 
@@ -122,8 +122,8 @@ export default {
         return isJPG && isLt2M;
       },
       add(){
-         addstore(form);
-         updatedialog(false)
+         addstore(this.form);
+         updatedialog(false);
       }
     },
     computed: {

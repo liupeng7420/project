@@ -11,6 +11,8 @@
           <el-menu-item index="/manage/Goods">去商品</el-menu-item>
           <el-menu-item index="/manage/Service">去服务</el-menu-item>
           <el-menu-item index="/manage/indent">订单管理</el-menu-item>
+          <el-menu-item index="/manage/Statitics">数据统计</el-menu-item>
+
         </el-menu-item-group>
     </el-menu>
     </el-aside>

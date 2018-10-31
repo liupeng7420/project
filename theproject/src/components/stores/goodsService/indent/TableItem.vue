@@ -26,6 +26,9 @@
           <el-form-item label="评价人">
             <span>{{ props.row.user }}</span>
           </el-form-item>
+           <el-form-item label="时间">
+            <span>{{ props.row.time }}</span>
+          </el-form-item>
         </el-form>
       </template>
     </el-table-column>
