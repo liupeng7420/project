@@ -8,12 +8,13 @@
     <el-aside width="200px">
      <el-menu :default-openeds="['1', '3']" router="true">
         <el-menu-item-group>
-          <el-menu-item index="/manage/Goods">去商品</el-menu-item>
-          <el-menu-item index="/manage/Service">去服务</el-menu-item>
+          <el-menu-item index="/Manage/Goods">去商品</el-menu-item>
+          <el-menu-item index="/Manage/Service">去服务</el-menu-item>
         </el-menu-item-group>
     </el-menu>
     </el-aside>
-      <router-view> </router-view>
+      <router-view>
+       </router-view>
     </el-main></el-main>
   </el-container>
 </el-container>
