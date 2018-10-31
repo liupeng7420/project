@@ -14,12 +14,12 @@ const getters = {
 const actions = {
     setIndent({
         commit
-    }, storename) {
+    }, storeId) {
         axios({
             method: "get",
             url: "/indent",
             params:{
-                store:storename
+                storeId,
             }
         }).then((response) => {
             console.log(response.data);

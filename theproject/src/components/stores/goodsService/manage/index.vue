@@ -8,6 +8,7 @@
     <el-aside width="200px">
      <el-menu :default-openeds="['1', '3']" router="true">
         <el-menu-item-group>
+
           <el-menu-item index="/manage/Goods">去商品</el-menu-item>
           <el-menu-item index="/manage/Service">去服务</el-menu-item>
           <el-menu-item index="/manage/indent">订单管理</el-menu-item>
@@ -26,9 +27,15 @@
 
 <script>
 import axios from "axios";
+ import { createNamespacedHelpers } from 'vuex'
+  const { mapState,mapMutations } = createNamespacedHelpers('service')
 export default {
         methods: {
-
+          ...mapMutations(["setStoreId"])
+        },
+        created:function(){
+           this.setStoreId(this.$route.query.id)
+           console.log(this.$route.query)
         }
 }
 </script>

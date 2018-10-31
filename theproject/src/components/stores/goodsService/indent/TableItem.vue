@@ -59,18 +59,18 @@
   </el-table>
 </template>
 <script>
-     import { createNamespacedHelpers } from 'vuex'
-  const { mapState,mapActions,mapMutations } = createNamespacedHelpers('indent')
+     import { mapMutations, mapActions,mapState } from 'vuex'
 
   export default {
   methods: {
-        ...mapActions(["setIndent"]),
+        ...mapActions('indent',["setIndent"]),
   },
   created() {
-      this.setIndent("小冲的店1")
+      this.setIndent(this.storeId)
   },
   computed: {
-      ...mapState(["indent"])
+      ...mapState('indent',["indent"]),
+      ...mapState('service',["storeId"])
   },
   components: {
   }

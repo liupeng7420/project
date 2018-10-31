@@ -9,6 +9,11 @@ import Service from './components/stores/goodsService/service/index.vue'
 import Indent from './components/stores/goodsService/indent/index.vue'
 import Statitics from './components/stores/goodsService/Statitics/index.vue'
 
+import PlatftomMgt from './components/platformManagement/index.vue'
+import Users from './components/platformManagement/users/index.vue'
+import Platfrom from './components/platformManagement/platform/index.vue'
+import SpoilMain from './components/platformManagement/spoilMain/index.vue'
+import Supplier from './components/platformManagement/supplier/index.vue'
 
 Vue.use(Router)
 
@@ -51,6 +56,26 @@ export default new Router({
           component: Statitics
         }
       ]
+    },
+    {
+      path: '/PlatftomMgt',
+      component: PlatftomMgt,
+      children: [{
+        path: 'Users',
+        component: Users
+      },
+      {
+        path: 'Platfrom',
+        component: Platfrom
+      },
+      {
+        path: 'SpoilMain',
+        component: SpoilMain
+      },
+      {
+        path: 'Supplier',
+        component: Supplier
+      }]
     }
   ]
 })
