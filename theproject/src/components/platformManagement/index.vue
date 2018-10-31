@@ -1,6 +1,11 @@
 <template>
     <el-container style="height:100%;">
+    <div>
+     <div>当前登录账号：{{this.userName}}</div>
+    <input type="button" value="注销" @click="remove">
+    </div>
   <el-header style="height:20%;">平台管理</el-header>
+  
   <el-container>
     <el-aside width="200px">
         <el-col>
@@ -23,6 +28,35 @@
 </el-container>
 </template>
 <script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      userName: ""
+    };
+  },
+
+  created() {
+    axios({
+      type: "get",
+      url: "/users/getSession"
+    }).then(response => {
+      this.userName = response.data.username;
+    });
+  },
+  methods: {
+    remove() {
+      axios({
+        type: "get",
+        url: "/users/removeSession"
+      }).then(response => {
+        this.$router.push("/");
+        window.location.reload();
+      });
+    }
+  }
+};
 </script>
 <style scoped>
 .el-header {
@@ -43,7 +77,8 @@
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  line-height: 0;
+  padding: 0;
 }
 
 body > .el-container {

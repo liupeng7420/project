@@ -1,6 +1,7 @@
 <template>
   <div id="logins">
-    <h1>欢迎使用XXX软件管理，请登录</h1>
+    <h1 id="hone">欢迎使用XXX软件管理，请登录</h1>
+    <p></p>
 <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
    <el-form-item label="账号" prop="username">
     <el-input type="text" v-model="ruleForm2.username"></el-input>
@@ -18,7 +19,13 @@
 
 <script>
 import axios from "axios";
+
+
+
+
+
 export default {
+  props:["admin"],
   data() {
     var checkusername = (rule, value, callback) => {
       if (value === "") {
@@ -62,27 +69,45 @@ export default {
           username: this.ruleForm2.username,
           pwd: this.ruleForm2.pwd
         }
-      }).then((response) => {
-        console.log(this.ruleForm2.pwd)
+      }).then(response => {
         if (response.data.status == 1) {
-          console.log(response.data.status)
-          this.$router.push("/Stores")
-         
-        }
-        if (response.data.status == 2) {
-           console.log(response.data.status)
-          this.$router.push("/PlatftomMgt");
+        console.log(response.data.status);
           
-        } 
-        else if (response.data.status == 0){
-           console.log(response.data.status)
+          this.$router.push("/Stores");
+
+        }
+
+        if (response.data.status == 2) {
+          console.log(response.data.status);
+
+          this.$router.push("/PlatftomMgt");
+
+        } else if (response.data.status == 0) {
+          console.log(response.data.status);
           alert("账号或密码错误");
         }
       });
     }
   },
+  // computed:{
+  //   isLogin(){
+  //     //通过sessionstoreage获取vuex里isLogin的状态
+  //     if(sessionStorage.getItem("userName") && sessionStorage.getItem("userToken")){
+  //       this.$store.commit("userStatus",sessionStorage.getItem("userName"));
+  //     }else{
+  //       this.$store.commit("userStatus",null);
+  //     }
+  //     return this.$store.getters.isLogin;
+  //   }
+  // },
   resetForm(formName) {
     this.$refs[formName].resetFields();
+  },
+  beforRouteEnter:(to,from,next)=>{
+    //已登录状态回到登录界面，即 登出
+    next(vm =>{
+      vm.$store.dispath("setUser",null);
+    })
   }
 };
 </script>
@@ -90,8 +115,15 @@ export default {
 <style scoped>
 #logins {
   width: 500px;
-  border: 1px solid red;
+  
+  position: fixed;
+  right: 30PX;
+  top:200PX;
   margin: auto;
   padding: 20px 20px 0 0;
+}
+#hone{
+  width: 300PX;
+  margin: 20PX auto;
 }
 </style>
