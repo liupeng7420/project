@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+<<<<<<< HEAD
 var storesRouter = require('./routes/stores');
 var supplierRouter = require('./routes/supplier');
 var spoilMainRouter = require('./routes/spoilMain');
@@ -18,7 +19,14 @@ var applyforRouter = require('./routes/applyfor');
 var closuresRouter = require('./routes/closures');
 var businessRouter = require('./routes/business');
 var platformRouter = require('./routes/platform');
+=======
+// var regRouter = require('./routes/reg');
+// var loginRouter = require('./routes/login');
+// var studentsRouter = require('./routes/students');
+// var movieRouter = require('./routes/movie');
+>>>>>>> planet
 
+const session = require('express-session'); //新增express-session
 var app = express();
 
 // view engine setup
@@ -29,10 +37,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//新增express-session
+app.use(session({
+  secret:"lovo",  //加密字符串
+  resave:true,   // 是否强制保存session
+  saveUninitialized:true,
+}))
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+<<<<<<< HEAD
 app.use('/stores', storesRouter);
 app.use('/supplier', supplierRouter);
 app.use('/spoilMain', spoilMainRouter);
@@ -46,6 +64,12 @@ app.use('/closures', closuresRouter);
 app.use('/business', businessRouter);
 app.use('/platform', platformRouter);
 
+=======
+// app.use('/reg', regRouter);
+// app.use('/login', loginRouter);
+// app.use('/students', studentsRouter);
+// app.use('/movie', movieRouter);
+>>>>>>> planet
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
