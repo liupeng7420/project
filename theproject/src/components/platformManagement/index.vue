@@ -1,5 +1,6 @@
 <template>
     <el-container style="height:100%;">
+<<<<<<< HEAD
        <div>
      <div>当前登录账号：{{this.userName}}</div>
     <input type="button" value="注销" @click="remove">
@@ -8,6 +9,9 @@
    
   <!-- <el-header style="height:20%;">平台管理</el-header> -->
   
+=======
+  <el-header style="height:20%;" class="headerTitle">爱宠系统平台管理</el-header>
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
   <el-container>
     <el-aside width="200px">
         <el-col>
@@ -43,6 +47,7 @@
 </el-container>
 </template>
 <script>
+<<<<<<< HEAD
 import axios from "axios";
 
 
@@ -73,6 +78,10 @@ export default {
         window.location.reload();
       });
     },
+=======
+export default {
+  methods: {
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -100,9 +109,12 @@ export default {
 .el-main {
   background-color: #e9eef3;
   color: #333;
+<<<<<<< HEAD
   text-align: center;
   line-height: 0;
   padding: 0;
+=======
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
 }
 
 body > .el-container {

@@ -18,10 +18,13 @@ var applyforRouter = require('./routes/applyfor');
 var closuresRouter = require('./routes/closures');
 var businessRouter = require('./routes/business');
 var platformRouter = require('./routes/platform');
+<<<<<<< HEAD
 // var regRouter = require('./routes/reg');
 // var loginRouter = require('./routes/login');
 // var studentsRouter = require('./routes/students');
 // var movieRouter = require('./routes/movie');
+=======
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
 
 const session = require('express-session'); //新增express-session
 var app = express();

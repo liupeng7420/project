@@ -2,7 +2,11 @@
   <el-container class="container">
     <el-header class="nav" height="100px" > 
        <img class="img">
+<<<<<<< HEAD
        <span class="username">{{user.username}}</span>
+=======
+       <span class="username">门店管理员账号</span>
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
        <el-button size="mini" type="danger" plain  @click="logout()">注销</el-button>
     </el-header>
     <el-main class="main">
@@ -34,14 +38,21 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import axios from 'axios'
+=======
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
 import DialogItem from "./DialogItem.vue";
 import { mapState, mapActions, mapMutations  } from "vuex"; 
 export default {
   data() {
+<<<<<<< HEAD
     return {
       user:{}
     };
+=======
+    return {};
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
   },
   methods: {
     into(id) {
@@ -49,6 +60,7 @@ export default {
       this.$router.push("/manage");
     },
     logout() {
+<<<<<<< HEAD
        axios({
         type: "get",
         url: "/users/removeSession"
@@ -56,12 +68,16 @@ export default {
         this.$router.push("/");
         window.location.reload();
       });
+=======
+      console.log("logout");
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
     },
     ...mapMutations("stores",["updatedialog"]),
     ...mapActions("stores",["setStores"]),
     ...mapMutations("service",["setStoreId"])
   },
   created() {
+<<<<<<< HEAD
     axios({
       type: "get",
       url: "/users/getSession"
@@ -69,6 +85,10 @@ export default {
       this.setStores(response.data._id);
       this.user = response.data;
     });
+=======
+    
+    this.setStores("5bd955003c4726ab2ac5cdf5");
+>>>>>>> 2db0f9573732a310fe4c924f41313c9197b2f4f2
   },
   computed: {
     ...mapState("stores",["stores", "dialogFormVisible"])
