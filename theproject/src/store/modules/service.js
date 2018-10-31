@@ -1,6 +1,7 @@
 
 import axios from "axios";
 const state = {
+    storeId:"",
     services:[],
     serviceo:{},
     pagination: {},
@@ -8,6 +9,9 @@ const state = {
     dialogFormVisible:false
 }
 const mutations = {
+  setStoreId(state,storeId){
+    state.storeId=storeId;
+  },
     setServices(state, services) {
         state.services = services;
     },
@@ -29,14 +33,16 @@ const getters = {
 }
 const actions = {
     setServices({
+      state,
         commit,
         dispatch
       },payload = {}) {
+        console.log("mendian",state.storeId)
         axios({
           url: "/service",
           method: "get",
           params: {
-            id:'5bd57ca0e91085f327402c8c',
+            id:state.storeId,
             type:payload.type,
             value:payload.value,
             page: payload.page || 1,

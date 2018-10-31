@@ -88,11 +88,12 @@ export default {
         this.img=file
       },
         addUpdated:function(){
+          console.log(this.storeId)
          axios({
           url: "/service",
           method: "post",
           data: {
-              stores:"5bd57ca0e91085f327402c8c",
+              stores:this.storeId,
                 name:this.name,
                 applicableSp:this.applicableSp,
                 seviceSp:this.seviceSp,
@@ -102,7 +103,7 @@ export default {
                 img:this.img 
           }
         }).then((response) => {
-         this.setServices('5bd57ca0e91085f327402c8c');
+         this.setServices();
           this.name="";
           this.applicableSp="";
           this.seviceSp="";
@@ -124,7 +125,7 @@ export default {
  ...mapActions(["setDialogFormVisible"])
     },
                     computed:{
-        ...mapState(["dialogFormVisible"])
+        ...mapState(["dialogFormVisible","storeId"])
         // ...mapState(["serviceo"])
     },
             components: {
@@ -134,9 +135,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-
-}
   html,body,#app{
         height:100%;
     }

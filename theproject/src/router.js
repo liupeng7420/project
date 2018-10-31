@@ -6,6 +6,9 @@ import Stores from './components/stores/index.vue'
 import Manage from './components/stores/goodsService/manage/index.vue'
 import Goods from './components/stores/goodsService/goods/index.vue'
 import Service from './components/stores/goodsService/service/index.vue'
+import Indent from './components/stores/goodsService/indent/index.vue'
+import Statitics from './components/stores/goodsService/Statitics/index.vue'
+
 import PlatftomMgt from './components/platformManagement/index.vue'
 import Users from './components/platformManagement/users/index.vue'
 import Platfrom from './components/platformManagement/platform/index.vue'
@@ -37,13 +40,21 @@ export default new Router({
       path: '/Manage',
       component: Manage,
       children: [{
-        path: 'Goods',
-        component: Goods
-      },
-      {
-        path: 'Service',
-        component: Service
-      }
+          path: 'Goods',
+          component: Goods
+        },
+        {
+          path: 'Service',
+          component: Service
+        },
+        {
+          path: 'Indent',
+          component: Indent
+        },
+        {
+          path: 'Statitics',
+          component: Statitics
+        }
       ]
     },
     {

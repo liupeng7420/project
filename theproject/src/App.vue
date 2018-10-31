@@ -4,7 +4,9 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+  
+</script>
 <style>
 #app,body,html{
   width:100%;
