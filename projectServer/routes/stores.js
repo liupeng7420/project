@@ -5,7 +5,12 @@ client.url('localhost:8080');
 const multiparty = require('multiparty');
 const path = require('path');
 /* GET users listing. */
-
+//获取单个商铺信息
+router.get("/seek", async function (req, res) {
+  let id = req.query.id;
+  let data = await client.get("/stores/"+id);
+  res.send(data);
+});
 router.get("/:id", async function (req, res) {
   let id = req.params.id;
   let data = await client.get("/stores", { submitType: "findJoin", ref: "users" });

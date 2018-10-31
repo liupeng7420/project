@@ -3,7 +3,11 @@
 <template>
   <div class="fenye">
 <el-container style="height:100%;">
-  <el-header style="height:20%;">这里是分页卡</el-header>
+  <el-header style="height:20%;">
+    <img class="logo">
+    <span class="headerName">{{store.name}}</span>
+    <el-button type="primary" @click="switchStore()">切换店铺</el-button>
+  </el-header>
   <el-container>
     <el-aside width="200px">
      <el-menu :default-openeds="['1', '3']" router="true">
@@ -30,12 +34,32 @@ import axios from "axios";
  import { createNamespacedHelpers } from 'vuex'
   const { mapState,mapMutations } = createNamespacedHelpers('service')
 export default {
+  data(){
+    return {
+      store:{}
+    };
+  },
         methods: {
-          ...mapMutations(["setStoreId"])
+          ...mapMutations(["setStoreId"]),
+          switchStore(){
+          this.$router.replace("/Stores");
+        }
         },
-        created:function(){
+        
+        created(){
            this.setStoreId(this.$route.query.id)
            console.log(this.$route.query)
+              axios({
+          url: "/stores/seek",
+          method: "get",
+          params: {
+              id:this.$route.query.id
+          }
+        }).then((response) => {
+          console.log(123);
+          console.log(response.data);
+          this.store=response.data
+        });
         }
 }
 </script>
@@ -50,8 +74,9 @@ export default {
     height:200px;
     background-color: #B3C0D1;
     color: #333;
-    text-align: center;
-    line-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .el-aside {
@@ -78,5 +103,11 @@ export default {
   
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
+  }
+  
+  .headerName{
+    margin-left: 20px;
+    margin-right: 50px;
+    font-size: 28px;
   }
 </style>

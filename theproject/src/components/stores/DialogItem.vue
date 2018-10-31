@@ -75,7 +75,7 @@ export default {
      form: {
             users:{
               $ref:"users",
-              $id:"5bd6a5a0ea19f4742764b724"
+              $id:"5bd57d3ee91085f327402c93"
           },
           name: '',
           licensenumber: '',
@@ -122,8 +122,8 @@ export default {
         return isJPG && isLt2M;
       },
       add(){
-         addstore(this.form);
-         updatedialog(false);
+         this.addstore(this.form);
+         this.updatedialog(false);
       }
     },
     computed: {

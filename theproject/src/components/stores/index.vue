@@ -56,7 +56,7 @@
 
           },
           created(){
-          this.setStores("5bd6a5a0ea19f4742764b724");
+          this.setStores("5bd57d3ee91085f327402c93");
       },
       computed: {
           ...mapState(["stores","dialogFormVisible"])
@@ -90,7 +90,7 @@
   font-size:24px;
 }
 .box-card{
-   width:350px;
+   width:340px;
     text-align: center;
     line-height:100px;
     box-sizing: border-box;
