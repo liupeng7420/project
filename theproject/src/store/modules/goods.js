@@ -5,7 +5,7 @@ const state = {
     pagenation:{},
     updates:{},
     associated:[],
-    pages:{}
+    // pages:{}
 }
 const mutations = {
     CommodityInformation (state, goods) {

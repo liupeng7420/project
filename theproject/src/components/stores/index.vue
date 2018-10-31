@@ -34,79 +34,75 @@
 </template>
 
 <script>
-  import DialogItem from "./DialogItem.vue";
-  import axios from "axios";
-  import { createNamespacedHelpers } from 'vuex'
-  const { mapState,mapActions,mapMutations } = createNamespacedHelpers('stores')
-  export default {
-    data(){
-      return {
-      }
+import DialogItem from "./DialogItem.vue";
+import { mapState, mapActions, mapMutations  } from "vuex"; 
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    into(id) {
+      this.setStoreId(id);
+      this.$router.push("/manage");
     },
-          methods: {
-            into(id){
-              console.log(id)
-              this.$router.push("/manage?id="+id);
-            },
-            logout(){
-              console.log("logout")
-            },
-            ...mapMutations(["updatedialog"]),
-              ...mapActions(["setStores"]),
-
-          },
-          created(){
-          this.setStores("5bd955003c4726ab2ac5cdf5");
-      },
-      computed: {
-          ...mapState(["stores","dialogFormVisible"])
-      },
-      components: {
-          DialogItem
-      }
+    logout() {
+      console.log("logout");
+    },
+    ...mapMutations("stores",["updatedialog"]),
+    ...mapActions("stores",["setStores"]),
+    ...mapMutations("service",["setStoreId"])
+  },
+  created() {
+    
+    this.setStores("5bd955003c4726ab2ac5cdf5");
+  },
+  computed: {
+    ...mapState("stores",["stores", "dialogFormVisible"])
+  },
+  components: {
+    DialogItem
   }
+};
 </script>
 
 
 <style scoped>
 .container {
-    height: 100%;
+  height: 100%;
 }
 .nav {
-     background: #0099cc;
-     display:flex;
-     align-items:center;
+  background: #0099cc;
+  display: flex;
+  align-items: center;
 }
-.img{
-  width:60px;
-  height:60px;
-   border-radius: 30px;
-  margin-right:10px;
-  background-color:white;
+.img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 10px;
+  background-color: white;
 }
-.username{
-  margin:0 10px;
-  color:white;
-  font-size:24px;
+.username {
+  margin: 0 10px;
+  color: white;
+  font-size: 24px;
 }
-.box-card{
-   width:340px;
-    text-align: center;
-    line-height:100px;
-    box-sizing: border-box;
-    font-size:80px;
-    
+.box-card {
+  width: 340px;
+  text-align: center;
+  line-height: 100px;
+  box-sizing: border-box;
+  font-size: 80px;
 }
-.box{
-  width:350px;
-  height:200px;
-  margin-right:20px;
+.box {
+  width: 350px;
+  height: 200px;
+  margin-right: 20px;
 }
-.main{
-  display:flex;
-   flex-wrap: wrap;   
-    align-items: flex-start;
-    align-content: flex-start;
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
 }
-
 </style>

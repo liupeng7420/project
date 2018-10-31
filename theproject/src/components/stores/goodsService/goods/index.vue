@@ -1,18 +1,17 @@
 <template>
   <div class="main">
     <nav class="nav">
-      <Add :goods="goods" :pagenation="pagenation" :dpId="dpId"></Add>
+      <Add :goods="goods" :pagenation="pagenation"></Add>
     </nav>
-  <IndexDatas :datas="associated" :DpId="this.dpId" :pagenation="pages"></IndexDatas>
-   <IndexPage :dpsId="this.dpId"></IndexPage>
+  <IndexDatas :datas="associated"  :pagenation="pages"></IndexDatas>
+   <IndexPage ></IndexPage>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { createNamespacedHelpers } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { ElementUI } from "element-ui";
-const { mapState, mapActions } = createNamespacedHelpers("goods");
 import IndexDatas from "./indexData.vue";
 import Add from "./add.vue";
 import IndexPage from "./indexPage.vue";
@@ -21,19 +20,22 @@ import IndexPage from "./indexPage.vue";
 export default {
   data: function() {
     return {
-      dpId: "5bd57b53e91085f327402c88"
+      dpId:"storeId"
     };
   },
   methods: {
-    ...mapActions(["Ajs", "getGoods"])
+    ...mapActions("goods",["Ajs", "getGoods"])
   },
   mounted() {
-    // console.log("初始化");
+    // console.log(1231,this.storeId);
     this.Ajs();
-    this.getGoods({ id: this.dpId });
+    this.getGoods({ id: this.storeId });
+    console.log(this.associated);
+    
   },
   computed: {
-    ...mapState(["goods", "pagenation", "associated","pages"])
+    ...mapState("goods",["goods", "pagenation", "associated","pages"]),
+    ...mapState("service",["storeId"])
   },
   components: {
     // Datas,

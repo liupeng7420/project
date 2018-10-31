@@ -53,14 +53,13 @@ import axios from "axios";
 import ToView from "./toView.vue";
 import Popover from './popover.vue';
 import { Table, TableColumn, Button, Pagination } from "element-ui";
-import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions } = createNamespacedHelpers("goods");
+import { mapState, mapActions } from "vuex";
+// const { mapState, mapActions } = createNamespacedHelpers("goods");
 
 export default {
   props: {
     goods: null,
     pagenation: null,
-    dpId: null,
     downs: null
   },
   methods: {
@@ -82,19 +81,20 @@ export default {
           },
           stores: {
             $ref: "stores",
-            $id: this.dpId
+            $id: this.storeId
           },price:price
         }
       }).then(res => {
         alert("新增成功");
         // this.downs();
-        this.getGoods({id:this.dpId,page})
+        this.getGoods({id:this.storeId,page})
       });
     },
-        ...mapActions(["Ajs","getGoods"])
+        ...mapActions("goods",["Ajs","getGoods"])
   },
   computed: {
-    ...mapState(['pages'])
+    ...mapState("goods",['pages']),
+    ...mapState("service",["storeId"])
   },
   components: {
     ToView,

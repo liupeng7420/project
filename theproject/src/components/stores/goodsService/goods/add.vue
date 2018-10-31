@@ -14,7 +14,7 @@
     <el-button slot="append" icon="el-icon-search" @click="CX"></el-button>
   </el-input>
 </div>
-        <Datas :goods="goods" :pagenation="pagenation" :dpId="dpId" :downs="down"></Datas>
+        <Datas :goods="goods" :pagenation="pagenation" :downs="down"></Datas>
         <Page :name="select" :value="input5" :pagenation="pagenation"></Page>
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogFormVisible = false">关闭</el-button>
@@ -35,7 +35,6 @@ export default {
   props: {
     goods: null,
     pagenation: null,
-    dpId: null
   },
   data() {
     return {

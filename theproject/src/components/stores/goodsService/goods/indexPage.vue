@@ -15,12 +15,13 @@
 
 <script>
 import axios from "axios";
-import { createNamespacedHelpers } from "vuex";
+// import { createNamespacedHelpers } from "vuex";
 import { ElementUI } from "element-ui";
-const { mapState, mapActions } = createNamespacedHelpers("goods");
+// const { mapState, mapActions } = createNamespacedHelpers("goods");
+import { mapState, mapActions } from "vuex";
 export default {
   props: {
-    dpsId: null,
+    // dpsId: null,
     // name:null,
     // value:null
   },
@@ -39,12 +40,13 @@ export default {
     // },
     updatapage(page) {
       console.log(page);
-      this.getGoods({ id: this.dpsId,page});
+      this.getGoods({ id: this.storeId,page});
     },
     ...mapActions(["getGoods"])
   },
   computed: {
-    ...mapState(["pages"])
+    ...mapState("goods",["pages"]),
+     ...mapState("service",["storeId"])
   }
 };
 </script>

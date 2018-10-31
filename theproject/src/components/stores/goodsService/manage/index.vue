@@ -40,20 +40,20 @@ export default {
     };
   },
         methods: {
-          ...mapMutations(["setStoreId"]),
           switchStore(){
           this.$router.replace("/Stores");
-        }
+          }
         },
-        
+        computed:{
+          ...mapState(["storeId"])
+        },
         created(){
-           this.setStoreId(this.$route.query.id)
-           console.log(this.$route.query)
+          console.log("1323132",this.storeId)
               axios({
           url: "/stores/seek",
           method: "get",
           params: {
-              id:this.$route.query.id
+              id:this.storeId
           }
         }).then((response) => {
           console.log(123);

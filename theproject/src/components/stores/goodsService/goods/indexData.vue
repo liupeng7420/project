@@ -52,33 +52,38 @@
 import axios from "axios";
 import ToView from "./toView.vue";
 import { createNamespacedHelpers } from "vuex";
-import { ElementUI } from "element-ui";
-const { mapState, mapActions } = createNamespacedHelpers("goods");
+// import { ElementUI } from "element-ui";
+// const { mapState, mapActions } = createNamespacedHelpers("goods");
+import { mapState, mapActions } from "vuex";
 export default {
   props: {
     datas: null,
     pagenation: null,
-    DpId: null
   },
   methods: {
-    handleClick(id) {
-      console.log(this.DpId);
-    },
+    // handleClick(id) {
+    //   console.log(this.DpId);
+    // },
     deleteGoods(id) {
       // console.log(this.pagenation);
-       let page = this.pagenation.curpage;
+      let page = this.pagenation.curpage;
       axios({
         method: "delete",
-        url: "/product/"+id,
+        url: "/product/" + id
       }).then(res => {
-          this.getGoods({id:this.DpId,page})
+        this.getGoods({ id: this.storeId, page });
         alert("已删除");
       });
     },
-...mapActions(["getGoods"])
+    // ...mapActions(["getGoods"])
+    ...mapActions("goods", ["getGoods"])
   },
   data() {
     return {};
+  },
+  computed: {
+    // ...mapState("goods", ["goods", "pagenation", "associated", "pages"]),
+    ...mapState("service", ["storeId"])
   },
   components: {
     ToView
