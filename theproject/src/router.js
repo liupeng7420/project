@@ -35,6 +35,11 @@ export default new Router({
       component: Reg
     },
     {
+      path: '/Login',
+      name: 'Login',
+      component: Login
+    },
+    {
       path: '/Stores',
       name: 'Stores',
       component: Stores
