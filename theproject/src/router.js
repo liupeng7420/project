@@ -20,13 +20,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: Login
+      name: 'Stores',
+      component: Stores
     },
     {
       path: '/Reg',
       name: 'Reg',
       component: Reg
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/Stores',
