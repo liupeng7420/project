@@ -2,17 +2,24 @@
 <template>
   <div class="fenye">
 <el-container style="height:100%;">
-  <el-header style="height:20%;">这里是分页卡</el-header>
+  <el-header style="height:20%;">
+    <img class="logo">
+    <span class="headerName">{{store.name}}</span>
+    <el-button type="primary" @click="switchStore()">切换店铺</el-button>
+  </el-header>
   <el-container>
     <el-aside width="200px">
      <el-menu :default-openeds="['1', '3']" router="true">
         <el-menu-item-group>
+
           <el-menu-item index="/manage/Goods">去商品</el-menu-item>
           <el-menu-item index="/manage/Service">去服务</el-menu-item>
+          <el-menu-item index="/manage/indent">订单管理</el-menu-item>
+          <el-menu-item index="/manage/Statitics">数据统计</el-menu-item>
+
         </el-menu-item-group>
     </el-menu>
     </el-aside>
-      
     <el-main>
       <router-view> </router-view>
     </el-main>
@@ -22,11 +29,37 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+ import { createNamespacedHelpers } from 'vuex'
+  const { mapState,mapMutations } = createNamespacedHelpers('service')
 export default {
-  methods: {
-
-  }
+  data(){
+    return {
+      store:{}
+    };
+  },
+        methods: {
+          switchStore(){
+          this.$router.replace("/Stores");
+          }
+        },
+        computed:{
+          ...mapState(["storeId"])
+        },
+        created(){
+          console.log("1323132",this.storeId)
+              axios({
+          url: "/stores/seek",
+          method: "get",
+          params: {
+              id:this.storeId
+          }
+        }).then((response) => {
+          console.log(123);
+          console.log(response.data);
+          this.store=response.data
+        });
+        }
 }
 </script>
 
@@ -40,8 +73,9 @@ export default {
     height:200px;
     background-color: #B3C0D1;
     color: #333;
-    text-align: center;
-    line-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .el-aside {
@@ -52,10 +86,9 @@ export default {
   }
 
   .el-main {
+    padding:0;
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
   }
 
   body > .el-container {
@@ -69,5 +102,11 @@ export default {
 
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
+  }
+  
+  .headerName{
+    margin-left: 20px;
+    margin-right: 50px;
+    font-size: 28px;
   }
 </style>

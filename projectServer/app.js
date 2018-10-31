@@ -17,6 +17,7 @@ var serveRouter = require('./routes/serve');
 var applyforRouter = require('./routes/applyfor');
 var closuresRouter = require('./routes/closures');
 var businessRouter = require('./routes/business');
+var platformRouter = require('./routes/platform');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/serve', serveRouter);
 app.use('/applyfor', applyforRouter);
 app.use('/closures', closuresRouter);
 app.use('/business', businessRouter);
+app.use('/platform', platformRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

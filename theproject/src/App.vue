@@ -4,7 +4,9 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+  
+</script>
 <style>
 #app,
 body,
@@ -13,4 +15,9 @@ html {
   height: 100%;
   background-image: url("./../public/upload/login.jpg");
 }
+*{
+  margin: 0;
+  padding: 0;
+}
+
 </style>
