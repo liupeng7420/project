@@ -16,9 +16,9 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "lodash": "^4.17.11",
     "morgan": "~1.9.0",
     "multiparty": "^4.2.1",
-    "path": "^0.12.7",
     "ykt-http-client": "^1.1.1"
   }
 }
