@@ -26,8 +26,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Stores',
-      component: Stores
+      name: 'Login',
+      component: Login
     },
     {
       path: '/Reg',

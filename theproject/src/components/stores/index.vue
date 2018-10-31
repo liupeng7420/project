@@ -35,7 +35,6 @@
 
 <script>
   import DialogItem from "./DialogItem.vue";
-  import axios from "axios";
   import { createNamespacedHelpers } from 'vuex'
   const { mapState,mapActions,mapMutations } = createNamespacedHelpers('stores')
   export default {
@@ -56,7 +55,7 @@
 
           },
           created(){
-          this.setStores("5bd57d3ee91085f327402c93");
+          this.setStores("5bd96723d0c5335c80dfe2b5");
       },
       computed: {
           ...mapState(["stores","dialogFormVisible"])
