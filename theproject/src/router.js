@@ -11,6 +11,9 @@ import Users from './components/platformManagement/users/index.vue'
 import Platfrom from './components/platformManagement/platform/index.vue'
 import SpoilMain from './components/platformManagement/spoilMain/index.vue'
 import Supplier from './components/platformManagement/supplier/index.vue'
+import Closed from './components/platformManagement/closed/index.vue'
+import NotAuait from './components/platformManagement/notAuait/index.vue'
+import Platform from './components/platformManagement/PfManage.vue'
 
 Vue.use(Router)
 
@@ -54,17 +57,35 @@ export default new Router({
         component: Users
       },
       {
-        path: 'Platfrom',
-        component: Platfrom
-      },
-      {
         path: 'SpoilMain',
         component: SpoilMain
       },
+
       {
         path: 'Supplier',
         component: Supplier
-      }]
+      },
+      {
+        path:'Platform',
+        component: Platform,
+        children:[
+          {
+            path: 'Platfrom',
+            component: Platfrom
+          },
+          {
+            path: 'Closed',
+            component: Closed
+          },
+          {
+            path: 'NotAuait',
+            component: NotAuait
+          }
+        ]
+
+      }
+     
+      ]
     }
   ]
 })
